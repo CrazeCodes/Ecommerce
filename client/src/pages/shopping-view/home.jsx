@@ -4,7 +4,7 @@ import bannerTwo from "../../assets/banner-2.webp";
 import bannerThree from "../../assets/banner-3.webp";
 import pic22 from "../../assets/pic22.webp";
 import pic23 from "../../assets/pic23.webp";
-
+import promoVideo from "../../assets/v1.mp4";
 
 
 import {
@@ -24,7 +24,7 @@ import {
   WatchIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllFilteredProducts,
@@ -56,7 +56,6 @@ const brandsWithIcon = [
   { id: "h&m", label: "H&M", icon: Heater },
 ];
 function ShoppingHome() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const { productList, productDetails } = useSelector(
     (state) => state.shopProducts
   );
@@ -140,7 +139,7 @@ function ShoppingHome() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % featureImageList.length);
+      // setCurrentSlide((prevSlide) => (prevSlide + 1) % featureImageList.length);
     }, 15000);
 
     return () => clearInterval(timer);
@@ -165,55 +164,35 @@ function ShoppingHome() {
 
   console.log(productList, "productList");
 
+  const featureProductsRef = useRef(null);
+
+  function handleScrollToFeatureProducts() {
+    if (featureProductsRef.current) {
+      featureProductsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <div className="w-full bg-gradient-to-r from-green-200 to-green-100 py-12 px-6 lg:px-20">
-  <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-    
-    {/* Carousel Left Side */}
-    <div className="relative w-full lg:w-2/3 h-[500px] rounded-lg overflow-hidden shadow-lg">
-      {featureImageList && featureImageList.length > 0
-        ? featureImageList.map((slide, index) => (
-            <img
-              src={slide?.image}
-              key={index}
-              className={`${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              } absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-[1000]`}
-            />
-          ))
-        : null}
-
-      {/* Left/Right Buttons */}
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() =>
-          setCurrentSlide(
-            (prevSlide) =>
-              (prevSlide - 1 + featureImageList.length) % featureImageList.length
-          )
-        }
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 z-10"
-      >
-        <ChevronLeftIcon className="w-4 h-4" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() =>
-          setCurrentSlide(
-            (prevSlide) => (prevSlide + 1) % featureImageList.length
-          )
-        }
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 z-10"
-      >
-        <ChevronRightIcon className="w-4 h-4" />
-      </Button>
-    </div>
-
-    {/* Offer Right Side */}
-    {/* Offer Right Side with Two Product Images */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+          {/* Teal text above video (left) */}
+          <div className="w-full lg:w-2/3 flex flex-col">
+            <span className="text-2xl font-bold mb-4 block" style={{ color: '#12362f' }}>Welcome to The Paradise of Shopping</span>
+            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg flex items-center justify-center">
+              <video
+                src={promoVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover opacity-90"
+                style={{ objectFit: 'cover', height: '100%', width: '100%' }}
+              />
+            </div>
+          </div>
+          {/* Offer Right Side */}
+          {/* Offer Right Side with Two Product Images */}
 <div className="w-full lg:w-1/3 flex flex-col gap-6">
   <h2 className="text-3xl font-bold text-gray-800">Exclusive Offer</h2>
   <p className="text-gray-600">
@@ -256,13 +235,13 @@ function ShoppingHome() {
     </div>
   </div>
 
-  <Button className="bg-[#12362f] hover:bg-green-700 text-white rounded-md">
+  <Button className="bg-[#12362f] hover:bg-green-700 text-white rounded-md" onClick={handleScrollToFeatureProducts}>
     BUY NOW
   </Button>
 </div>
 
-  </div>
-</div>
+        </div>
+      </div>
 
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -308,7 +287,7 @@ function ShoppingHome() {
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="py-12" ref={featureProductsRef}>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
             Feature Products
