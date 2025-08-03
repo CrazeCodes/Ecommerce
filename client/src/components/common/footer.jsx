@@ -3,94 +3,88 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    
-    <footer className="bg-[#12362f] text-white pt-16 pb-8">
-      {/* Wavy Top SVG */}
-      {/* SVG Wave Divider */}
-        <div className="w-full overflow-hidden relative -mb-1">
+    <footer className="bg-gradient-to-b from-[#12362f] via-[#183a3a] to-[#0f2322] text-white pt-20 pb-8 relative overflow-hidden z-10">
+      {/* Fashion wave divider */}
+      <div className="w-full overflow-hidden absolute -top-1 left-0 right-0 z-0 ">
         <svg
-            className="w-full h-20"
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-16"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-            <path
-            d="M0,224L60,213.3C120,203,240,181,360,176C480,171,600,181,720,165.3C840,149,960,107,1080,96C1200,85,1320,107,1380,117.3L1440,128V0H1380C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0H0Z"
+          <path
+            d="M0,160L60,176C120,192,240,224,360,218.7C480,213,600,171,720,149.3C840,128,960,128,1080,122.7C1200,117,1320,107,1380,101.3L1440,96V0H1380C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0H0Z"
             fill="#12362f"
-            />
+            opacity={0.7}
+          />
         </svg>
-        </div>
+      </div>
 
-
-      <div className="container mx-auto px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="relative z-10 container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* SHOP */}
           <div>
-            <h4 className="text-lg font-semibold mb-3">SHOP</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li>Drinks</li>
-              <li>Gift Cards</li>
-              <li>Store Locator</li>
-              <li>Refer a Friend</li>
+            <h4 className="text-lg font-extrabold tracking-wider mb-4 uppercase text-yellow-400 font-[Poppins]">Shop</h4>
+            <ul className="space-y-2 text-md text-gray-200">
+              <li><a href="#" className="hover:text-yellow-400 transition">Trending</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">New Arrivals</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Gift Cards</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Refer a Friend</a></li>
             </ul>
           </div>
 
           {/* HELP */}
           <div>
-            <h4 className="text-lg font-semibold mb-3">HELP</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li>Contact Us</li>
-              <li>FAQ</li>
-              <li>Accessibility</li>
+            <h4 className="text-lg font-extrabold tracking-wider mb-4 uppercase text-yellow-400 font-[Poppins]">Help</h4>
+            <ul className="space-y-2 text-md text-gray-200">
+              <li><a href="#" className="hover:text-yellow-400 transition">Contact Us</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">FAQ</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Shipping & Returns</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Size Guide</a></li>
             </ul>
           </div>
 
           {/* ABOUT */}
           <div>
-            <h4 className="text-lg font-semibold mb-3">ABOUT</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li>Our Story</li>
-              <li>OLIPOP Digest</li>
-              <li>Ingredients</li>
-              <li>Digestive Health</li>
-              <li>Wholesale</li>
-              <li>Press</li>
-              <li>Careers</li>
+            <h4 className="text-lg font-extrabold tracking-wider mb-4 uppercase text-yellow-400 font-[Poppins]">About</h4>
+            <ul className="space-y-2 text-md text-gray-200">
+              <li><a href="#" className="hover:text-yellow-400 transition">Our Story</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Fashion Blog</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Careers</a></li>
+              <li><a href="#" className="hover:text-yellow-400 transition">Sustainability</a></li>
             </ul>
           </div>
 
-          {/* Subscribe */}
-          <div className="space-y-4">
-            <p className="text-sm">Sign up to get 10% off your first order</p>
-            <div className="flex">
+          {/* SUBSCRIBE & SOCIAL */}
+          <div>
+            <p className="text-base mb-3 font-medium text-gray-100 font-[Poppins]">Be first to shop exclusive drops & get 10% off</p>
+            <form className="flex items-center bg-white bg-opacity-15 rounded-full p-2 backdrop-blur-md border border-yellow-400/30 focus-within:ring-2 focus-within:ring-yellow-400 transition">
               <input
                 type="email"
+                aria-label="Email Address"
                 placeholder="Your Email Address"
-                className="rounded-full px-4 py-2 w-full text-black focus:outline-none"
+                className="bg-transparent flex-grow outline-none px-4 py-2 text-white placeholder-gray-300 font-medium"
               />
-              <button className="ml-2 bg-yellow-400 text-black font-semibold px-4 py-2 rounded-full hover:bg-yellow-500">
+              <button
+                type="submit"
+                className="ml-2 bg-yellow-400 text-[#12362f] font-bold px-5 py-2 rounded-full hover:bg-yellow-500 focus:outline-none shadow transition"
+              >
                 Subscribe
               </button>
-            </div>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="hover:text-yellow-400">
-                <FaInstagram size={20} />
-              </a>
-              <a href="#" className="hover:text-yellow-400">
-                <FaFacebook size={20} />
-              </a>
-              <a href="#" className="hover:text-yellow-400">
-                <FaTwitter size={20} />
-              </a>
-              <a href="#" className="hover:text-yellow-400">
-                <FaLinkedin size={20} />
-              </a>
+            </form>
+            <div className="flex space-x-6 mt-7">
+              <a href="#" aria-label="Instagram" className="hover:text-yellow-400 focus:outline-none transition scale-125"><FaInstagram size={26} /></a>
+              <a href="#" aria-label="Facebook" className="hover:text-yellow-400 focus:outline-none transition scale-125"><FaFacebook size={26} /></a>
+              <a href="#" aria-label="Twitter" className="hover:text-yellow-400 focus:outline-none transition scale-125"><FaTwitter size={26} /></a>
+              <a href="#" aria-label="LinkedIn" className="hover:text-yellow-400 focus:outline-none transition scale-125"><FaLinkedin size={26} /></a>
             </div>
           </div>
         </div>
 
-        <div className="text-center text-xs text-gray-400 mt-10">
-          © {new Date().getFullYear()} VizzleMart. All Rights Reserved · Terms of Service · Privacy Policy · Do Not Sell My Information
+        <hr className="my-10 border-yellow-400/30" />
+
+        <div className="text-center text-xs text-gray-300 font-medium tracking-wide font-[Poppins]">
+          © {new Date().getFullYear()} <span className="font-semibold text-yellow-400">VizzleMart</span>. Style inspired for you &middot; <a href="#" className="hover:text-yellow-400">Terms of Service</a> &middot; <a href="#" className="hover:text-yellow-400">Privacy Policy</a> &middot; <a href="#" className="hover:text-yellow-400">Do Not Sell My Info</a>
         </div>
       </div>
     </footer>

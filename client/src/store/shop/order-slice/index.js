@@ -60,6 +60,18 @@ export const getOrderDetails = createAsyncThunk(
   }
 );
 
+export const cancelOrder = createAsyncThunk(
+  "/order/cancelOrder",
+  async (orderId) => {
+    const response = await axios.post(
+      `${API_BASE_URL}/api/shop/order/cancel`,
+      { orderId }
+    );
+
+    return response.data;
+  }
+);
+
 const shoppingOrderSlice = createSlice({
   name: "shoppingOrderSlice",
   initialState,
@@ -108,6 +120,17 @@ const shoppingOrderSlice = createSlice({
       .addCase(getOrderDetails.rejected, (state) => {
         state.isLoading = false;
         state.orderDetails = null;
+      })
+      .addCase(cancelOrder.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(cancelOrder.fulfilled, (state) => {
+        state.isLoading = false;
+        state.approvalURL = null;
+        state.orderId = null;
+      })
+      .addCase(cancelOrder.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });

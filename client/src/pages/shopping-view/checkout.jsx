@@ -81,17 +81,35 @@ function ShoppingCheckout() {
       payerId: "",
     };
 
+    console.log("Sending order data to backend:", orderData);
+    
     dispatch(createNewOrder(orderData)).then((data) => {
-      console.log(data, "sangam");
+      console.log("Backend response:", data);
       if (data?.payload?.success) {
+        console.log("Payment successful, approval URL:", data?.payload?.approvalURL);
         setIsPaymemntStart(true);
       } else {
+        console.log("Payment failed:", data?.payload?.message);
         setIsPaymemntStart(false);
+        toast({
+          title: "Payment initiation failed",
+          description: data?.payload?.message || "Unknown error occurred",
+          variant: "destructive",
+        });
       }
+    }).catch((error) => {
+      console.log("Payment error:", error);
+      setIsPaymemntStart(false);
+      toast({
+        title: "Payment error",
+        description: "Failed to initiate payment",
+        variant: "destructive",
+      });
     });
   }
 
   if (approvalURL) {
+    console.log("Redirecting to PayPal:", approvalURL);
     window.location.href = approvalURL;
   }
 

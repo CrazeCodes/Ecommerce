@@ -177,20 +177,48 @@ function ShoppingHome() {
       <div className="w-full bg-gradient-to-r from-green-200 to-green-100 py-12 px-6 lg:px-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* Teal text above video (left) */}
-          <div className="w-full lg:w-2/3 flex flex-col">
-            <span className="text-2xl font-bold mb-4 block" style={{ color: '#12362f' }}>Welcome to The Paradise of Shopping</span>
-            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg flex items-center justify-center">
-              <video
-                src={promoVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover opacity-90"
-                style={{ objectFit: 'cover', height: '100%', width: '100%' }}
-              />
-            </div>
-          </div>
+          <div className="w-full lg:w-2/3">
+  <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg">
+    {/* Video */}
+    <video
+      src={promoVideo}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="w-full h-full object-cover"
+      style={{ objectFit: 'cover', height: '100%', width: '100%' }}
+    />
+    {/* Full video text overlay */}
+    <div
+      className="
+        absolute inset-0 flex items-center justify-center
+        bg-gradient-to-b from-black/50 via-transparent to-black/70
+      "
+    >
+      <span
+        className="
+          text-white
+          text-5xl lg:text-6xl
+          font-bold
+          uppercase
+          tracking-wider
+          px-8 py-6
+          text-center
+        "
+        style={{
+          fontFamily: "'Montserrat', sans-serif",
+          textShadow: '0 2px 30px rgba(0,0,0,0.7), 0 1px 8px rgba(18,54,47,0.25)',
+          letterSpacing: '0.08em',
+          width: '100%',
+        }}
+      >
+        Welcome to The Paradise of Shopping
+      </span>
+    </div>
+  </div>
+</div>
+
           {/* Offer Right Side */}
           {/* Offer Right Side with Two Product Images */}
 <div className="w-full lg:w-1/3 flex flex-col gap-6">
